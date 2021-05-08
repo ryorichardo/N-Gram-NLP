@@ -1,9 +1,6 @@
 # N-Gram-NLP
 Predictive text dengan algoritma N-Gram
 
-## Description
-Merupakan program predicitve text dengan algoritma N-Gram. Projek untuk intro to Natural Language Processing (NLP).
-
 ## Dataset
 Tersedia 5 buah dataset yang dapat digunakan oleh program. Dataset diambil dari website https://wortschatz.uni-leipzig.de/en/download/Indonesian. Untuk menambah dataset baru bisa mengunduh dari website tersebut atau website yang tertera di https://github.com/kirralabs/indonesian-NLP-resources ataupun dataset lainnya.
 
