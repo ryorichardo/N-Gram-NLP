@@ -1,4 +1,6 @@
 import re
+from BM import searchBM
+import time
 
 # Path dataset, ubah sesuai lokasi dataset yang dituju
 path = "data\\ind_mixed_2012_300K-sentences.txt"
@@ -26,13 +28,21 @@ search_regex = string_final + " (\w+)"
 # Inisialisasi list prediksi kata
 found_words = []
 
+start = time.time()
+
 # Pencarian prediksi kata
 with open(path, encoding="utf-8") as dataset:
     for line in dataset:
         alpha_only = regex.sub("", line)                    # Membuang karakter selain alphabet dan titik
         no_multi_spaces = re.sub(" +", " ", alpha_only)     # Membuang ekstra spasi
         lowered = no_multi_spaces.lower()                   # Lowercase
-        found_words += re.findall(search_regex, lowered)    # Mencari kata yang ketemu dan melakukan concat dengan list
+        list = searchBM(lowered, string_final)
+        for i in list:
+                word = re.search("( \w+)", lowered[i:])
+                if word != None:
+                    found_words.append((word.group(0))[1:])
+        
+        #found_words += re.findall(search_regex, lowered)    # Mencari kata yang ketemu dan melakukan concat dengan list
 
 # Pengurutan prediksi kata berdasarkan akurasi
 count_all = len(found_words)    # Jumlah semua prediksi kata
@@ -49,11 +59,12 @@ for word in sorted_found_words:
         count_words.append(1)
 
 # Output
+print("Waktu: ", time.time()-start)
 print("Prediksi kata:")
 
 # Pola ditemukan berjumlah >= 3
 if (count_all >= 3):
-    for i in range (3):
+    for i in range (3): 
         print(str(i+1) + ". " + words[i] + " , akurasi " + str(round((count_words[i] / count_all * 100), 2)) + "%")
 
 # Pola tidak ditemukan
