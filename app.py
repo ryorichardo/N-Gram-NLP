@@ -58,7 +58,7 @@ if (count_all >= 3):
 
 # Pola tidak ditemukan
 elif (count_all == 0):
-    print("Tidak ada rekomendasi kata, tidak ditemukan pola pada dataset.")
+    print("Tidak ada prediksi kata, tidak ditemukan pola pada dataset.")
 
 # Pola ditemukan berjumlah 1 atau 2
 else:
